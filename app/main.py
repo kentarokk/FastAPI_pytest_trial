@@ -1,8 +1,6 @@
 from fastapi import FastAPI
+from app.router import main_router
 
 app = FastAPI()
 
-
-@app.get("/")
-def index():
-    return {"msg": "Hello, World!"}
+app.include_router(main_router.router, tags=["main"])
