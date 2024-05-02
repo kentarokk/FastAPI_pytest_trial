@@ -4,7 +4,7 @@ RUN pip install --upgrade pip
 RUN pip install poetry
 COPY poetry.lock /code/poetry.lock
 COPY pyproject.toml /code/pyproject.toml
-RUN poetry export -f requirements.txt -o /code/requirements.txt --without-hashes
+RUN poetry export -f requirements.txt -o /code/requirements.txt --with dev --without-hashes
 
 FROM python:3.11-slim
 ENV PYTHONUNBUFFERED=1
@@ -13,14 +13,15 @@ COPY --from=builder /code/requirements.txt /code/requirements.txt
 # パッケージリストの更新
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    libc6-dev \
-    libpq-dev \
-    gcc \
+    # libc6-dev \
+    # libpq-dev \
+    # gcc \
+    # mecab \
+    # mecab-ipadic \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-COPY ./app /code/app
 # COPY ./docs /code/docs
 
 # migration (開発用)
@@ -30,5 +31,7 @@ COPY ./app /code/app
 # env
 ENV PYTHONPATH=/code/app
 
-EXPOSE 8000
-CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+# EXPOSE 8080
+# RUN pip install uvicorn
+# RUN pip install fastapi
+CMD ["uvicorn", "main:api", "--reload", "--host", "0.0.0.0", "--port", "8080"]
