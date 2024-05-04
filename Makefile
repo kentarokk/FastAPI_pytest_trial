@@ -1,3 +1,6 @@
+in:
+	docker container exec -it api_fastapi bash
+
 .PHONY: build
 build:
 	docker-compose -f docker-compose.yml build
