@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app import schemas, cruds, models
-from db.database import get_db, SessionLocal
+from app import schemas, cruds
+from app.db.database import SessionLocal
 
 router = APIRouter()
+
 
 def get_db():
     db = SessionLocal()
@@ -12,7 +13,6 @@ def get_db():
         yield db
     finally:
         db.close()
-
 
 
 @router.get("/")
