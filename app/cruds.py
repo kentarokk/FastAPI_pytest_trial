@@ -4,13 +4,11 @@ from app.schema import user_schema
 
 
 def get_user(db: Session, user_id: int):
-    # return db.query(user.User).filter(user.User.id == user_id).first()
-    return 123
+    return db.query(user_model.User).filter(user_model.User.id == user_id).first()
 
 
 def get_user_by_name(db: Session, user_name: str):
-    # return db.query(user.User).filter(user.User.name == user_name).first()
-    return 123
+    return db.query(user_model.User).filter(user_model.User.name == user_name).first()
 
 
 def create_user(db: Session, user: user_schema.UserBase):
