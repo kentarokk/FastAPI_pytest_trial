@@ -7,6 +7,7 @@ class TaskBase(BaseModel):
     status: str
     user_id: int
 
+
 class Task(TaskBase):
     id: int
 

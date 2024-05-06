@@ -1,9 +1,10 @@
 from pydantic import BaseModel
-from app.schema.task import Task
+from app.schema.task_schema import Task
 
 
 class UserBase(BaseModel):
     name: str
+
 
 class User(UserBase):
     id: int
@@ -12,5 +13,6 @@ class User(UserBase):
     class Config:
         orm_mode = True
 
-class UserCreate(BaseModel):
+
+class UserCreate(UserBase):
     pass

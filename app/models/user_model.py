@@ -1,4 +1,6 @@
-from sqlmodel import SQLModel, Field, relationship
+from sqlmodel import SQLModel, Field
+from sqlmodel.main import relationship
+
 
 class User(SQLModel, table=True):
     __tablename__ = 'users'
@@ -6,4 +8,3 @@ class User(SQLModel, table=True):
     id: int = Field(primary_key=True)
     name: str = Field(max_length=100)
     tasks = relationship("Task", back_populates="user")
-

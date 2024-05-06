@@ -1,5 +1,6 @@
 from sqlmodel import SQLModel, Field
 
+
 class Task(SQLModel, table=True):
     __tablename__ = 'tasks'
 
