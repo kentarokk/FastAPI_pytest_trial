@@ -1,5 +1,5 @@
-from sqlmodel import SQLModel, Field
-from sqlmodel.main import relationship
+from sqlmodel import SQLModel, Field, Relationship
+from app.models.task_model import Task
 
 
 class User(SQLModel, table=True):
@@ -7,4 +7,4 @@ class User(SQLModel, table=True):
 
     id: int = Field(primary_key=True)
     name: str = Field(max_length=100)
-    tasks = relationship("Task", back_populates="user")
+    tasks: list["Task"] = Relationship(back_populates="user")
