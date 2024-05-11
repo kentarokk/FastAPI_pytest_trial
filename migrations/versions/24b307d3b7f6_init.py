@@ -28,7 +28,7 @@ def upgrade() -> None:
                     )
     op.create_table('tasks',
                     sa.Column('id', sa.Integer(), nullable=False),
-                    sa.Column('name', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+                    sa.Column('title', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
                     sa.Column('description', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
                     sa.Column('status', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
                     sa.Column('user_id', sa.Integer(), nullable=False),
